@@ -4,25 +4,33 @@ Servo steering;
 
 #define SERVO_PIN 13
 
+int angle = 90;
+
 void setup()
 {
-  steering.setPeriodHertz(50);
+  Serial.begin(115200);
 
+  steering.setPeriodHertz(50);
   steering.attach(SERVO_PIN, 500, 2400);
 
-  steering.write(90);
+  steering.write(angle);
+
+  Serial.print("Servo Angle: ");
+  Serial.println(angle);
 
   delay(1000);
 }
 
 void loop()
 {
-  steering.write(0);
-  delay(1000);
+  angle = 65;
+  for(angle;angle<=105;angle = angle + 5)
+  {
+    steering.write(angle);
 
-  steering.write(90);
-  delay(1000);
+    Serial.print("Servo Angle: ");
+    Serial.println(angle);
 
-  steering.write(180);
-  delay(1000);
+    delay(1000);
+  }
 }
