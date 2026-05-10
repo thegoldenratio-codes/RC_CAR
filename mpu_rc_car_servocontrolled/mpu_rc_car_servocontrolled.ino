@@ -183,9 +183,6 @@ void steerRight() {
   servoAngle = 105;
 
   steering.write(servoAngle);
-
-  Serial.print("Servo Angle: ");
-  Serial.println(servoAngle);
 }
 
 void centerSteering() {
@@ -193,7 +190,4 @@ void centerSteering() {
   servoAngle = 90;
 
   steering.write(servoAngle);
-
-  Serial.print("Servo Angle: ");
-  Serial.println(servoAngle);
 }
