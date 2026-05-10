@@ -15,8 +15,8 @@ String buffer = "";
 #define IN2 19
 #define IN3 21
 #define IN4 22
-#define ENA 5
-#define ENB 17
+// #define ENA 5
+// #define ENB 17
 
 // ---------------- SERVO ----------------
 #define SERVO_PIN 13
@@ -43,8 +43,8 @@ void setup() {
   pinMode(IN4, OUTPUT);
 
   // PWM setup
-  ledcAttach(ENA, 1000, 8);
-  ledcAttach(ENB, 1000, 8);
+  // ledcAttach(ENA, 1000, 8);
+  // ledcAttach(ENB, 1000, 8);
 
   // Servo setup
   steering.setPeriodHertz(50);
@@ -121,10 +121,6 @@ void applyControl(char cmd) {
       steerRight();
       break;
 
-    case 'D':
-      centerSteering();
-      break;
-
     case 'S':
       stopCar();
       centerSteering();
@@ -136,8 +132,8 @@ void applyControl(char cmd) {
 
 void forward() {
 
-  ledcWrite(ENA, 159);
-  ledcWrite(ENB, 159);
+  // ledcWrite(ENA, 159);
+  // ledcWrite(ENB, 159);
 
   digitalWrite(IN1, HIGH);
   digitalWrite(IN2, LOW);
@@ -148,8 +144,8 @@ void forward() {
 
 void backward() {
 
-  ledcWrite(ENA, 159);
-  ledcWrite(ENB, 159);
+  // ledcWrite(ENA, 159);
+  // ledcWrite(ENB, 159);
 
   digitalWrite(IN1, LOW);
   digitalWrite(IN2, HIGH);
@@ -160,8 +156,8 @@ void backward() {
 
 void stopCar() {
 
-  ledcWrite(ENA, 0);
-  ledcWrite(ENB, 0);
+  // ledcWrite(ENA, 0);
+  // ledcWrite(ENB, 0);
 
   digitalWrite(IN1, LOW);
   digitalWrite(IN2, LOW);
@@ -174,7 +170,7 @@ void stopCar() {
 
 void steerLeft() {
 
-  servoAngle = 40;
+  servoAngle = 65;
 
   steering.write(servoAngle);
 
@@ -184,7 +180,7 @@ void steerLeft() {
 
 void steerRight() {
 
-  servoAngle = 140;
+  servoAngle = 105;
 
   steering.write(servoAngle);
 
