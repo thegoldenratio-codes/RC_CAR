@@ -19,7 +19,7 @@ String buffer = "";
 // #define ENB 17
 
 // ---------------- SERVO ----------------
-#define SERVO_PIN 13
+#define SERVO_PIN 14
 
 Servo steering;
 
