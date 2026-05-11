@@ -170,24 +170,41 @@ void stopCar() {
 
 void steerLeft() {
 
-  servoAngle = 65;
-
-  steering.write(servoAngle);
-
-  Serial.print("Servo Angle: ");
-  Serial.println(servoAngle);
+  while(servoAngle < 65) {
+    servoAngle = servoAngle + 5;
+    steering.write(servoAngle);
+    delay(20);
+  }
+  while(servoAngle > 65) {
+    servoAngle = servoAngle - 5;
+    steering.write(servoAngle);
+    delay(20);
+  }
 }
 
 void steerRight() {
-
-  servoAngle = 105;
-
-  steering.write(servoAngle);
-}
+    while(servoAngle < 115) {
+      servoAngle = servoAngle + 5;
+      steering.write(servoAngle);
+      delay(20);
+    }
+    while(servoAngle > 115) {
+      servoAngle = servoAngle - 5;
+      steering.write(servoAngle);
+      delay(20);
+    }
+  }
 
 void centerSteering() {
 
-  servoAngle = 90;
-
-  steering.write(servoAngle);
+  while(servoAngle < 90) {
+    servoAngle = servoAngle + 5;
+    steering.write(servoAngle);
+    delay(20);
+  }
+  while(servoAngle > 90) {
+    servoAngle = servoAngle - 5;
+    steering.write(servoAngle);
+    delay(20);
+  }
 }
