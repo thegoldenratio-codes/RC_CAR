@@ -1,4 +1,5 @@
 #include "BluetoothSerial.h"
+#include "ESP32Servo.h"
 
 BluetoothSerial SerialBT;
 
@@ -10,7 +11,17 @@ BluetoothSerial SerialBT;
 // #define ENA 5
 // #define ENB 17
 
+char lastCmd = 'S';
+String buffer = "";
+
 char command;
+
+// ---------------- SERVO ----------------
+#define SERVO_PIN 13
+
+Servo steering;
+
+int servoAngle = 90;
 
 void setup() {
   Serial.begin(115200);
@@ -31,19 +42,58 @@ void setup() {
 }
 
 void loop() {
-  if (SerialBT.available()) {
-    command = SerialBT.read();
-    Serial.println(command);
 
-    switch (command) {
-      case 'F': forward(); break;
-      case 'B': backward(); break;
-      case 'L': left(); break;
-      case 'R': right(); break;
-      case 'L':steerLeft();break;
-      case 'R':steerRight();break;
-      case 'S':stopCar();centerSteering();break;  
+  // Read incoming Bluetooth data
+  while (SerialBT.available()) {
+
+    char c = SerialBT.read();
+
+    if (c == '\n' || c == '\r') {
+
+      if (buffer.length() > 0) {
+
+        lastCmd = buffer[0];
+        buffer = "";
+      }
+
+    } else {
+
+      buffer += c;
     }
+  }
+
+  applyControl(lastCmd);
+}
+
+// ---------------- CONTROL ----------------
+
+void applyControl(char cmd) {
+
+  Serial.print("Command: ");
+  Serial.println(cmd);
+
+  switch (cmd) {
+
+    case 'F':
+      forward();
+      break;
+
+    case 'B':
+      backward();
+      break;
+
+    case 'L':
+      steerLeft();
+      break;
+
+    case 'R':
+      steerRight();
+      break;
+
+    case 'S':
+      stopCar();
+      centerSteering();
+      break;
   }
 }
 
@@ -84,8 +134,8 @@ void backward() {
 
 
 void stopCar() {
-  ledcWrite(ENA, 0);
-  ledcWrite(ENB, 0);
+  // ledcWrite(ENA, 0);
+  // ledcWrite(ENB, 0);
 
   digitalWrite(IN1, LOW);
   digitalWrite(IN2, LOW);
