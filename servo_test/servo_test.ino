@@ -2,7 +2,7 @@
 
 Servo steering;
 
-#define SERVO_PIN 13
+#define SERVO_PIN 14
 
 int angle = 90;
 
