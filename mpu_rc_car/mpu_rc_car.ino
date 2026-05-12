@@ -15,7 +15,7 @@ String buffer = "";
 #define IN3 21
 #define IN4 22
 #define ENA 5
-#define ENB 17
+#define ENB 23
 
 char command;
 
@@ -101,8 +101,8 @@ void startCar() {
 }
 
 void forward() {
-  ledcWrite(ENA, 159);
-  ledcWrite(ENB, 159);
+  ledcWrite(ENA, 250);
+  ledcWrite(ENB, 250);
 
   digitalWrite(IN1, HIGH);
   digitalWrite(IN2, LOW);
@@ -112,8 +112,8 @@ void forward() {
 }
 
 void backward() {
-  ledcWrite(ENA, 159);
-  ledcWrite(ENB, 159);
+  ledcWrite(ENA, 250);
+  ledcWrite(ENB, 250);
 
   digitalWrite(IN1, LOW);
   digitalWrite(IN2, HIGH);
@@ -123,8 +123,8 @@ void backward() {
 }
 
 void left() {
-  ledcWrite(ENA, 100);
-  ledcWrite(ENB, 159);
+  ledcWrite(ENA, 200);
+  ledcWrite(ENB, 250);
 
   digitalWrite(IN1, LOW);
   digitalWrite(IN2, HIGH);
@@ -134,8 +134,8 @@ void left() {
 }
 
 void right() {
-  ledcWrite(ENA, 159);
-  ledcWrite(ENB, 100);
+  ledcWrite(ENA, 250);
+  ledcWrite(ENB, 200);
 
   digitalWrite(IN1, HIGH);
   digitalWrite(IN2, LOW);

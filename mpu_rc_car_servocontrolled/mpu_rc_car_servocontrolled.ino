@@ -18,6 +18,10 @@ String buffer = "";
 #define IN3 21
 #define IN4 22
 
+// ---------------- ENABLE PINS ----------------
+#define ENA 5
+#define ENB 23
+
 // ---------------- SERVO ----------------
 #define SERVO_PIN 14
 
@@ -44,6 +48,14 @@ void setup() {
   pinMode(IN2, OUTPUT);
   pinMode(IN3, OUTPUT);
   pinMode(IN4, OUTPUT);
+
+  // Enable pins
+  pinMode(ENA, OUTPUT);
+  pinMode(ENB, OUTPUT);
+
+  // Start stopped
+  analogWrite(ENA, 0);
+  analogWrite(ENB, 0);
 
   // Servo setup
   steering.setPeriodHertz(50);
@@ -139,6 +151,9 @@ void applyControl(char cmd) {
 
 void forward() {
 
+  analogWrite(ENA, 250);
+  analogWrite(ENB, 250);
+
   digitalWrite(IN1, HIGH);
   digitalWrite(IN2, LOW);
 
@@ -148,6 +163,9 @@ void forward() {
 
 void backward() {
 
+  analogWrite(ENA, 250);
+  analogWrite(ENB, 250);
+
   digitalWrite(IN1, LOW);
   digitalWrite(IN2, HIGH);
 
@@ -156,6 +174,9 @@ void backward() {
 }
 
 void stopCar() {
+
+  analogWrite(ENA, 0);
+  analogWrite(ENB, 0);
 
   digitalWrite(IN1, LOW);
   digitalWrite(IN2, LOW);
